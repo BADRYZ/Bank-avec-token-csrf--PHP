@@ -13,6 +13,6 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 // Redirige vers la page de connexion ou une autre page de votre choix
-header("Location: login.php");
+header("Location: connection.php");
 exit();
 ?>

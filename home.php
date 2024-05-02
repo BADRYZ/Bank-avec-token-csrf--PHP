@@ -114,7 +114,13 @@ $re_bal = htmlspecialchars($re_bal);
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Transférer des fonds</h2>
+               <?php
+                if (!isset($_SESSION['csrf_token'])) {
+                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+                }
+                ?>
             <form action="process_transfer.php" method="post">
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                 <div class="form-group">
                     <label for="recipientEmail">Adresse email du destinataire:</label>
                     <input type="email" id="recipientEmail" name="recipientEmail" required>
