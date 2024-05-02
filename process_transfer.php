@@ -7,6 +7,16 @@ include("config.php");
 /*if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     die('CSRF token validation failed');
 }*/
+if (!isset($_POST['csrf_token']) ||  $_POST['csrf_token']!== hash('sha256',$_SESSION['csrf_token'])) {
+    die('CSRF token validation failed');
+}
+/*if (!isset($_POST['csrf_token']) ||  $_POST['csrf_token'] !== password_hash($_SESSION['csrf_token'], PASSWORD_DEFAULT)) {
+    die('CSRF token validation failed');
+}*/
+
+/*if (!isset($_POST['csrf_token']) ||  $_POST['csrf_token'] !== $hashed_csrf_token) {
+    die('CSRF token validation failed');
+}*/
 
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['email'])) {
